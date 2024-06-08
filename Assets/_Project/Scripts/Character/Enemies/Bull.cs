@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class Enemie : Entity
+public class Bull : Enemie
 {
-    protected float speed;
-    protected float currentSpeed;
 
     // Start is called before the first frame update
     void Start()
