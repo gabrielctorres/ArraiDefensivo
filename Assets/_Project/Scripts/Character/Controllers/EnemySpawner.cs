@@ -1,50 +1,83 @@
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [Header("Controle")]
+    //Controle
+    public bool startWave = false;
 
+    [Header("Variáveis")]
     //Variaveis
     [SerializeField] private GameObject[] enemyPrefabs;
-    [SerializeField] private float baseEnemies = 5;
+    [SerializeField] private float baseStartEnemies = 5;
+    [SerializeField] private int EnemyTotal = 0;
     //Em segundos
-    [SerializeField] private float spawnRate = 1;
+    [SerializeField] private float enemiesPerSecond = 4;
     [SerializeField] private float timeBetweenWaves = 5;
     [SerializeField] private float difficultyMultiplier = 0.65f;
 
-    public bool startWave = false;
+    [Header("Events")]
+    public static UnityEvent onEnemyDestroy = new UnityEvent();
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
     private int enemiesToSpawn;
     private bool isSpawning = false;
+    private bool firstTime = true;
 
-
-    void initialWave()
+    IEnumerator StartWave()
     {
-
-    }
-
-    void StartWave()
-    {
+        yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesToSpawn = EnemiesPerWave();
+        
     }
-
-    public void SpawnEnemies()
-    {
-
-    }
-
     private int EnemiesPerWave()
     {
-        return (int)(baseEnemies * Mathf.Pow(currentWave, difficultyMultiplier));
+        return EnemyTotal = (int)(baseStartEnemies * Mathf.Pow(currentWave, difficultyMultiplier));
+    }
+    void SpawnEnemies()
+    {
+        Instantiate(enemyPrefabs[0], transform.position, Quaternion.identity);
+        enemiesAlive++;
+        enemiesToSpawn--;
+    }
+    private void EnemyDestroyed()
+    {
+        enemiesAlive--;
+    }
+    void EndWave()
+    {
+        firstTime = false;
+        isSpawning = false;
+        timeSinceLastSpawn = 0;
+        currentWave++;
+        StartCoroutine(StartWave());
+    }
+    private void OnEnable()
+    {
+        onEnemyDestroy.AddListener(EnemyDestroyed);
+    }
+    private void OnDisable()
+    {
+        onEnemyDestroy.RemoveListener(EnemyDestroyed);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (firstTime)
+        {
+            isSpawning = true;
+            enemiesToSpawn = EnemiesPerWave();
+        }
+        else
+        {
+            StartCoroutine(StartWave());
+        }
     }
 
     // Update is called once per frame
@@ -52,11 +85,21 @@ public class EnemySpawner : MonoBehaviour
     {
         if(startWave)
         {
+            if (!isSpawning) return;
             timeSinceLastSpawn += Time.deltaTime;
-            if (timeSinceLastSpawn >= (1/spawnRate))
+            if (timeSinceLastSpawn >= (1/ enemiesPerSecond) && enemiesToSpawn > 0)
             {
+                //Spawnar inimigo
+                SpawnEnemies();
+                timeSinceLastSpawn = 0;
+            }
 
+            if(enemiesToSpawn == 0 && enemiesAlive == 0)
+            {
+                EndWave();
             }
         }
     }
+
+    
 }

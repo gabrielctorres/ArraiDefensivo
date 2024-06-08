@@ -6,10 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-<<<<<<< HEAD
-    path: Assets/_Project/Resources/Scenes/SampleScene.unity
-=======
     path: Assets/_Project/Resources/Scenes/CenaSmite.unity
->>>>>>> 4256a3dd8e9041c52e074484380f87db847b7630
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
