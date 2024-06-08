@@ -6,22 +6,24 @@ public class Enemie : Entity
     [Header("Controle")]
     [SerializeField] private bool canMove = true;
 
-    [Header("Variáveis")]
+    [Header("Variï¿½veis")]
     [SerializeField] protected float speed;
     [SerializeField] protected float currentSpeed;
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] private PathCreator pathCreator;
+    private PathCreator pathCreator;
 
     float distanceTravalled;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        pathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
-        transform.position = pathCreator.path.GetPointAtDistance(0.5f);
+        if (GameObject.Find("Path").GetComponent<PathCreator>() != null)
+            pathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
+        if (pathCreator != null)
+            transform.position = pathCreator.path.GetPointAtDistance(0.5f);
     }
 
     public void FixedUpdate()

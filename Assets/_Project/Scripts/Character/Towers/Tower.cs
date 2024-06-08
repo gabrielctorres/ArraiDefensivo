@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class Tower : Entity
 {
-    public float level;
     [SerializeField] protected float fireRate = 1f;
     protected float nextFire;
 

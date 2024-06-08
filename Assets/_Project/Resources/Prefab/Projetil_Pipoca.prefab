@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3584342872940053863}
   - component: {fileID: 558468476083205343}
   - component: {fileID: 2786654651604826945}
+  - component: {fileID: 6968865761562350193}
+  - component: {fileID: 1174556883388596424}
   m_Layer: 0
   m_Name: Projetil_Pipoca
   m_TagString: Untagged
@@ -150,3 +152,28 @@ MonoBehaviour:
     m_RotationOrder: 4
   duration: 1
   maxHeightY: 3
+--- !u!114 &6968865761562350193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088030167037961687}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90da31b747fe4ee40903c1c4ddc4259f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1174556883388596424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5088030167037961687}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b81a17391f10c444ac281bc13f83e34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effect: {fileID: 11400000, guid: 6f0bfb82b0867674f80721c4d91e1539, type: 2}
