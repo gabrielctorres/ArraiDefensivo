@@ -1,11 +1,5 @@
 {
   "dependencies": {
-    "com.smitepackage": {
-      "version": "file:D:/GameDev/Packages/UnityPackges/SmitePackage",
-      "depth": 0,
-      "source": "local",
-      "dependencies": {}
-    },
     "com.unity.2d.animation": {
       "version": "7.0.12",
       "depth": 1,
