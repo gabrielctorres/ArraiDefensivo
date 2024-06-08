@@ -12,21 +12,22 @@ public class Enemie : Entity
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;
-    [SerializeField] private PathCreator pathCreator;
+    private PathCreator pathCreator;
 
     float distanceTravalled;
 
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        base.Start();
         pathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
+        currentSpeed = speed;
         transform.position = pathCreator.path.GetPointAtDistance(0.5f);
     }
 
     public void FixedUpdate()
     {
-        if (canMove)
+        if (canMove && pathCreator != null)
             MoveInPath();
     }
 
@@ -38,7 +39,7 @@ public class Enemie : Entity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Fim"))
         {
             //collision.GetComponent<Entity>().TakeDamage(damage);
             Destroy(gameObject);

@@ -41,7 +41,14 @@ public class EnemySpawner : MonoBehaviour
     }
     void SpawnEnemies()
     {
-        Instantiate(enemyPrefabs[0], transform.position, Quaternion.identity);
+        if(Random.Range(0,2)%2 == 0)
+        {
+            Instantiate(enemyPrefabs[0], transform.position, Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(enemyPrefabs[1], transform.position, Quaternion.identity);
+        }
         enemiesAlive++;
         enemiesToSpawn--;
     }
