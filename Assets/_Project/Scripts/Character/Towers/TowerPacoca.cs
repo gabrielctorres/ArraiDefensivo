@@ -54,6 +54,9 @@ public class TowerPacoca : Tower
     {
         GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
         instanceProjectile.GetComponent<Bullet>().Target = FindClosestTarget().transform;
+
+
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

@@ -28,6 +28,11 @@ public class TowerMilho : Tower
     {
         GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
         instanceProjectile.GetComponent<Bullet>().Target = FindNearestTarget().transform;
+
+        if (level >= 2)
+            instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
+
+        if (level == 3) instanceProjectile.GetComponent<ExplosionBehavior>().enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
