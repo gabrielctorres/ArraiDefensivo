@@ -1,12 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PopCorn : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
-    private Transform target;
+    public Transform Target;
     public AnimationCurve curve;
     [SerializeField] private float duration = 1;
     [SerializeField] private float maxHeightY = 3;
+
+
+    public void Start()
+    {
+        StartCoroutine(Curve(transform.position, Target.position));
+    }
     public IEnumerator Curve(Vector3 start, Vector3 end)
     {
         var timePast = 0f;
@@ -25,19 +32,8 @@ public class PopCorn : MonoBehaviour
             yield return null;
         }
     }
-    // Start is called before the first frame update
-    void Start()
-    {
-        //target = GameManager.instance.character.transform;
-        StartCoroutine(Curve(transform.position, target.position));
-    }
-
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision != null)
-        {
-            //collision.GetComponent<Enemie>().TakeDamage(10);
-            Destroy(this.gameObject);
-        }
+
     }
 }

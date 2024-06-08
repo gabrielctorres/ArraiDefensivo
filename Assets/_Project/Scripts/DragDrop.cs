@@ -25,15 +25,20 @@ public class DragDrop : MonoBehaviour
             CheckHitObject();
         }
 
-        if (Input.GetMouseButton(0) && objSelected != null && inMousePosition)
+        if (Input.GetMouseButton(0) && objSelected != null)
         {
-            DragObject();
+            inMousePosition = true;
         }
 
         if (Input.GetMouseButtonUp(0) && objSelected != null)
         {
             DropObject();
         }
+
+        if (inMousePosition) DragObject();
+
+        if (!isValidPosition) ChangeIndicatorColor(Color.red);
+        else ChangeIndicatorColor(Color.blue);
     }
 
     void CheckHitObject()
@@ -50,12 +55,10 @@ public class DragDrop : MonoBehaviour
 
     void DragObject()
     {
-        inMousePosition = true;
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 10f));
         objSelected.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
         ChangeColorSprite(0.5f);
 
-        // Check if the current position is valid
         isValidPosition = IsValidDropPosition();
         ChangeColorSprite(isValidPosition ? 0.5f : 0.2f);
     }
@@ -64,15 +67,12 @@ public class DragDrop : MonoBehaviour
     {
         if (isValidPosition)
         {
-            ChangeColorSprite(1f);
-            objSelected.transform.parent = null; // Reset parent
+            ChangeColorSprite(1);
+            if (objSelected != null) objSelected.GetComponent<Tower>().enabled = true;
+
+            objSelected.transform.parent = null;
             objSelected = null;
             inMousePosition = false;
-        }
-        else
-        {
-            objSelected.transform.position = oldPosition;
-            inMousePosition = true;
         }
     }
 
@@ -93,5 +93,13 @@ public class DragDrop : MonoBehaviour
             objSelected.GetComponent<SpriteRenderer>().color = temp;
         }
     }
-
+    public void ChangeIndicatorColor(Color color)
+    {
+        if (objSelected != null)
+        {
+            Color temp = color;
+            temp.a = 0.2f;
+            objSelected.transform.GetChild(0).GetComponent<SpriteRenderer>().color = temp;
+        }
+    }
 }
