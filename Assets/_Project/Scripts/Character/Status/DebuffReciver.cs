@@ -5,12 +5,12 @@ using UnityEngine;
 public class DebuffReciver : MonoBehaviour
 {
     public List<SlotDebuff> slots = new List<SlotDebuff>();
-    private Entity entity;
+    private Enemie entity;
 
     private void Start()
     {
 
-        entity = GetComponent<Entity>();
+        entity = GetComponent<Enemie>();
     }
     public void AddEffect(Debuff _effect)
     {

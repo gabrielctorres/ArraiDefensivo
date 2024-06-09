@@ -1,4 +1,4 @@
-using PathCreation;
+    using PathCreation;
 using UnityEngine;
 
 public class Enemie : Entity
@@ -7,8 +7,7 @@ public class Enemie : Entity
     [SerializeField] private bool canMove = true;
 
     [Header("Vari�veis")]
-    [SerializeField] protected float speed;
-    [SerializeField] protected float currentSpeed;
+    [SerializeField] public float speed;
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;

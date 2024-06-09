@@ -27,7 +27,7 @@ public class TowerMilho : Tower
     public override void InstantateProjectile()
     {
         GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
-        instanceProjectile.GetComponent<Bullet>().Target = FindNearestTarget().transform;
+        instanceProjectile.GetComponent<Bullet>().Target = FindNearestTarget(targets).transform;
 
         if (level >= 2)
             instanceProjectile.GetComponent<DebuffGiver>().enabled = true;

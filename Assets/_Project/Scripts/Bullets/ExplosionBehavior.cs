@@ -13,7 +13,7 @@ public class ExplosionBehavior : MonoBehaviour
 
     public void Explosion()
     {
-        coll2D.radius = 3f;
+        coll2D.radius = 0.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -21,7 +21,7 @@ public class ExplosionBehavior : MonoBehaviour
         if (other.GetComponent<Enemie>() != null)
         {
             other.GetComponent<Enemie>().TakeDamage(4f);
-            //Dar Play na particula
+            this.GetComponentInChildren<ParticleSystem>().Play();
         }
 
     }

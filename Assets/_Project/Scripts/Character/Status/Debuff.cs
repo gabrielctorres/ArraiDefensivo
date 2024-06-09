@@ -9,7 +9,7 @@ public abstract class Debuff : ScriptableObject
     public GameObject visualEffect;
     public float cooldown;
     public float tickSpeed;
-    public abstract void Apply(Entity target);
+    public abstract void Apply(Enemie target);
 
-    public abstract void Remove(Entity target);
+    public abstract void Remove(Enemie target);
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
 public abstract class Tower : Entity
 {
     [SerializeField] protected float fireRate = 1f;
@@ -10,6 +11,8 @@ public abstract class Tower : Entity
     public GameObject prefabProjectile;
     public Transform bulletOrigin;
     public List<GameObject> targets = new List<GameObject>();
+    public List<GameObject> towers = new List<GameObject>();
+    public Image imageLifeFill;
     public override void Start()
     {
         base.Start();
@@ -19,6 +22,7 @@ public abstract class Tower : Entity
 
     public virtual void VerifyLife()
     {
+        imageLifeFill.fillAmount = currentLife / maxLife;
         if (currentLife <= 0)
         {
             Destroy(this.gameObject);
@@ -40,7 +44,13 @@ public abstract class Tower : Entity
         }
     }
     public abstract void InstantateProjectile();
-
+    public virtual void Heal(float value = 0)
+    {
+        if (currentLife < maxLife)
+        {
+            currentLife += value;
+        }
+    }
     public GameObject FindClosestTarget()
     {
         if (targets == null || targets.Count == 0)
@@ -66,9 +76,9 @@ public abstract class Tower : Entity
         }
         return nearestObject;
     }
-    public GameObject FindNearestTarget()
+    public GameObject FindNearestTarget(List<GameObject> objects)
     {
-        if (targets == null || targets.Count == 0)
+        if (objects == null || objects.Count == 0)
         {
             return null;
         }
@@ -77,7 +87,7 @@ public abstract class Tower : Entity
         float minDistance = Mathf.Infinity;
         Vector2 referencePosition = transform.position;
 
-        foreach (GameObject obj in targets)
+        foreach (GameObject obj in objects)
         {
             if (obj != null)
             {

@@ -33,7 +33,7 @@ public class TowerPacoca : Tower
 
             if (aux == 2)
             {
-                if (index < pacocaObjects.Count && pacocaObjects[index].activeInHierarchy)
+                if (index < (pacocaObjects.Count - 1) && pacocaObjects[index].activeInHierarchy)
                 {
                     pacocaObjects[index].SetActive(false);
                     index++;
@@ -55,7 +55,10 @@ public class TowerPacoca : Tower
         GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
         instanceProjectile.GetComponent<Bullet>().Target = FindClosestTarget().transform;
 
+        if (level >= 2)
+            instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
 
+        //if (level == 3) instanceProjectile.GetComponent<ExplosionBehavior>().enabled = true;
 
     }
     private void OnTriggerEnter2D(Collider2D other)
