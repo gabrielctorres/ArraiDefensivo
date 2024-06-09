@@ -44,6 +44,7 @@ public class Enemie : Entity
         imageLifeFill.fillAmount = currentLife / maxLife;
         if (currentLife <= 0)
         {
+            EnemySpawner.onEnemyDestroy?.Invoke();
             Destroy(this.gameObject);
         }
 

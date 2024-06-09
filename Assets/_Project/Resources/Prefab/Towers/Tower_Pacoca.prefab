@@ -1165,9 +1165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c465c422c0c504ba5f0447fcd825cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 100
+  maxLife: 200
   imageLifeFill: {fileID: 868411898547285030}
-  damage: 5
+  damage: 20
   level: 3
   fireRate: 1
   prefabProjectile: {fileID: 4612058029918503865, guid: 3150554e1d3581249a4b4f664b3a3748, type: 3}
@@ -1176,7 +1176,7 @@ MonoBehaviour:
   towers: []
   buttonUpgrade: {fileID: 1173224641}
   txtLevel: {fileID: 1175808367}
-  coastUpgrade: 12.5
+  coastUpgrade: 60
   animator: {fileID: 0}
   levelUPEffect: {fileID: 4330838582166473700}
   pacocaObjects:

@@ -47,9 +47,9 @@ public class Shop : MonoBehaviour
                 towerInstance = Instantiate(slots[index].prefabTower);
                 dragDrop.AddDragObject(towerInstance);
                 GameManager.instance.Money -= slots[index].price;
+                ButtonExitShop();
             }
         }
-        
     }
 
 }

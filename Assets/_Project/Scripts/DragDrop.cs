@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering;
 
 public class DragDrop : MonoBehaviour
 {
@@ -51,11 +52,11 @@ public class DragDrop : MonoBehaviour
 
     public void AddDragObject(GameObject obj)
     {
-  
+
         if (objSelected != null)
         {
             Debug.LogWarning("Another object is already being dragged!");
-            DropObject(); 
+            DropObject();
         }
 
         objSelected = obj;
@@ -63,7 +64,7 @@ public class DragDrop : MonoBehaviour
         objSelected.transform.parent = this.transform;
         objSelected.GetComponent<Tower>().enabled = false;
         inMousePosition = true;
-        DragObject(); 
+        DragObject();
     }
 
     void CheckHitObject()
@@ -106,16 +107,27 @@ public class DragDrop : MonoBehaviour
         else
         {
             objSelected.transform.position = oldPosition;
-            inMousePosition = true; 
+            inMousePosition = true;
         }
     }
 
     bool IsValidDropPosition()
     {
-        Collider2D[] overlap = Physics2D.OverlapCircleAll(objSelected.transform.position, 0.5f, LayerMask.GetMask("Obstaculo"));
+        Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 1);
+        Collider2D[] overlap = Physics2D.OverlapCircleAll(newPos, rangeSnap, LayerMask.GetMask("Obstaculo"));
         return overlap.Length == 0;
     }
 
+
+    private void OnDrawGizmos()
+    {
+        if (objSelected != null)
+        {
+            Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 1);
+            Gizmos.DrawWireSphere(newPos, rangeSnap);
+        }
+
+    }
     public void ChangeColorSprite(float alphaValue)
     {
         if (objSelected != null)

@@ -40,14 +40,16 @@ public abstract class Tower : Entity
     }
     public void Upgrade()
     {
-        if (level < 3)
+        if (level < 3 && GameManager.instance.Money >= coastUpgrade)
         {
             level++;
             buttonUpgrade.SetActive(false);
-            maxLife *= 2;
+            maxLife *= 1.3f;
             currentLife = maxLife;
             levelUPEffect.gameObject.SetActive(true);
             levelUPEffect.Play();
+            GameManager.instance.Money -= coastUpgrade;
+            coastUpgrade *= 1.3f;
         }
     }
     public override void Update()
@@ -69,7 +71,7 @@ public abstract class Tower : Entity
         {
             nextFire = Time.time + fireRate;
             InstantateProjectile();
-            TakeDamage(10f);
+            TakeDamage((damage / 2));
         }
     }
     public abstract void InstantateProjectile();

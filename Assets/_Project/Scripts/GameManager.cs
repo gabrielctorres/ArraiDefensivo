@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        money = 100;
+        money = 200;
         currenteLife = maxLife;
     }
     private void Update()

@@ -35,7 +35,7 @@ public class TowerMaca : Tower
             if (tower != null)
             {
                 tower.GetComponent<Tower>().Heal(damage);
-                TakeDamage(10f);
+                TakeDamage((damage / 2));
                 instanceParticule = Instantiate(particule, tower.transform.position, Quaternion.identity, tower.transform);
 
             }

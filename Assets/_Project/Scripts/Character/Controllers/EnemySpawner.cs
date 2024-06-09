@@ -85,6 +85,7 @@ public class EnemySpawner : MonoBehaviour
         isSpawning = false;
         timeSinceLastSpawn = 0;
         currentWave++;
+        GameManager.instance.Money += 50;
         StartCoroutine(StartWave());
     }
     private void OnEnable()
