@@ -9,7 +9,7 @@ public class EnemySpawner : MonoBehaviour
     //Controle
     public bool startWave = false;
 
-    [Header("Variáveis")]
+    [Header("Variï¿½veis")]
     //Variaveis
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private float baseStartEnemies = 5;
@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeBetweenWaves = 5;
     [SerializeField] private float difficultyMultiplier = 0.65f;
 
+    public ParticleSystem spawnParticule;
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
@@ -36,7 +37,7 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesToSpawn = EnemiesPerWave();
-        
+
     }
     private int EnemiesPerWave()
     {
@@ -46,7 +47,8 @@ public class EnemySpawner : MonoBehaviour
     {
         int random = Random.Range(0, 3);
         GameObject enemyInstance;
-        if(random == 0)
+        spawnParticule.Play();
+        if (random == 0)
         {
             enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
         }
@@ -100,23 +102,23 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startWave)
+        if (startWave)
         {
             if (!isSpawning) return;
             timeSinceLastSpawn += Time.deltaTime;
-            if (timeSinceLastSpawn >= (1/ enemiesPerSecond) && enemiesToSpawn > 0)
+            if (timeSinceLastSpawn >= (1 / enemiesPerSecond) && enemiesToSpawn > 0)
             {
                 //Spawnar inimigo
                 SpawnEnemies();
                 timeSinceLastSpawn = 0;
             }
 
-            if(enemiesToSpawn == 0 && enemiesAlive == 0)
+            if (enemiesToSpawn == 0 && enemiesAlive == 0)
             {
                 EndWave();
             }
         }
     }
 
-    
+
 }

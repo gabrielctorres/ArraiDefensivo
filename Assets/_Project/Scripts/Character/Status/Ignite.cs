@@ -7,7 +7,7 @@ public class Ignite : Debuff
 {
     public override void Apply(Enemie target)
     {
-        target.TakeDamage(1f);
+        target.TakeDamage(3f);
     }
 
     public override void Remove(Enemie target)

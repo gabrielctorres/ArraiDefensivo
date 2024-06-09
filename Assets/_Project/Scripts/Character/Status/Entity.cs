@@ -13,12 +13,16 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float damage;
 
     //Interno
-    public int level;
+    public int level = 1;
 
-    public virtual void Start()
+    private void Awake()
     {
         currentLife = maxLife;
         level = 1;
+    }
+    public virtual void Start()
+    {
+
     }
     public virtual void Update()
     {

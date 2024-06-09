@@ -34,7 +34,7 @@ public class TowerPacoca : Tower
 
             if (aux == 2)
             {
-                if (index < pacocaObjects.Count && pacocaObjects[index].activeInHierarchy)
+                if (index < (pacocaObjects.Count - 1) && pacocaObjects[index].activeInHierarchy)
                 {
                     pacocaObjects[index].SetActive(false);
                     index++;

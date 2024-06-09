@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 using UnityEngine.UI;
@@ -13,7 +14,11 @@ public abstract class Tower : Entity
     public List<GameObject> targets = new List<GameObject>();
     public List<GameObject> towers = new List<GameObject>();
 
+    public GameObject buttonUpgrade;
+    public TextMeshProUGUI txtLevel;
+    public float coastUpgrade;
     public Animator animator;
+    public ParticleSystem levelUPEffect;
     public override void Start()
     {
         base.Start();
@@ -33,9 +38,26 @@ public abstract class Tower : Entity
             Destroy(this.gameObject);
         }
     }
-
+    public void Upgrade()
+    {
+        if (level < 3)
+        {
+            level++;
+            buttonUpgrade.SetActive(false);
+            maxLife *= 2;
+            currentLife = maxLife;
+            levelUPEffect.gameObject.SetActive(true);
+            levelUPEffect.Play();
+        }
+    }
     public override void Update()
     {
+        if (GameManager.instance.Money >= coastUpgrade && level < 3)
+        {
+            buttonUpgrade.SetActive(true);
+
+        }
+        txtLevel.text = level.ToString();
         VerifyLife();
         if (animator != null)
             animator.SetFloat("Life", currentLife);

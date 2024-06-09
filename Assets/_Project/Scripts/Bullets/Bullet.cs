@@ -26,15 +26,16 @@ public class Bullet : MonoBehaviour
             var linearTime = timePast / duration;
             var heightTime = curve.Evaluate(linearTime);
             var height = Mathf.Lerp(0, maxHeightY, heightTime);
-            transform.position = Vector3.Lerp(start, end, linearTime) + new Vector3(0, height, 0); //adding values on y axis
+            transform.position = Vector3.Lerp(start, end, linearTime) + new Vector3(0, height, 0);
             yield return null;
         }
     }
-    void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.GetComponent<Enemie>() != null)
+        Enemie enemy = other.GetComponent<Enemie>();
+        if (enemy != null)
         {
-            collision.GetComponent<Enemie>().TakeDamage(damage);
+            enemy.TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }

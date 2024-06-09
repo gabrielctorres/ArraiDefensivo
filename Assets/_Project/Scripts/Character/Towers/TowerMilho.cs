@@ -30,9 +30,14 @@ public class TowerMilho : Tower
         instanceProjectile.GetComponent<Bullet>().Target = FindNearestTarget(targets).transform;
         instanceProjectile.GetComponent<Bullet>().damage = damage;
         if (level >= 2)
-            instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
+            instanceProjectile.GetComponent<DebuffGiver>().canApplyEffect = true;
 
-        if (level == 3) instanceProjectile.GetComponent<ExplosionSpawner>().enabled = true;
+        if (level == 3)
+        {
+            instanceProjectile.GetComponent<ExplosionSpawner>().canExplode = true;
+            instanceProjectile.GetComponent<ExplosionSpawner>().pointSpawn = FindNearestTarget(targets).transform; ;
+        }
+
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

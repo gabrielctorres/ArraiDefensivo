@@ -4,15 +4,16 @@ using UnityEngine;
 public class Enemie : Entity
 {
     [Header("Controle")]
-    [SerializeField] private bool canMove = true;
+    [SerializeField] public bool canMove = true;
 
     [Header("Vari�veis")]
-    [SerializeField] public float speed;
+    [SerializeField] private float speed;
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;
     private PathCreator pathCreator;
     public float offSetMovement = 0.32f;
+
 
     public float reward;
     private Animator animator;
@@ -21,6 +22,7 @@ public class Enemie : Entity
     // Start is called before the first frame update
     public override void Start()
     {
+
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         if (pathCreator != null)
@@ -30,7 +32,6 @@ public class Enemie : Entity
     }
     public override void Update()
     {
-        base.Update();
         VerifyLife();
     }
     public void FixedUpdate()
@@ -77,6 +78,7 @@ public class Enemie : Entity
             //collision.GetComponent<Entity>().TakeDamage(damage);
             Destroy(gameObject);
             EnemySpawner.onEnemyDestroy?.Invoke();
+            GameManager.instance.CurrenteLife -= damage;
         }
     }
 }

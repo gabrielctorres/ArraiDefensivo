@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
-    // A única instância do GameManager
+
     public static GameManager instance;
 
-    // Propriedade pública para acessar a instância
+    public Image lifeFill;
 
     private float money;
-
+    private float currenteLife;
+    public float maxLife;
     public float Money
     {
         get { return money; }
         set { money = value; }
     }
-
+    public float CurrenteLife
+    {
+        get { return currenteLife; }
+        set { currenteLife = value; }
+    }
     private void Awake()
     {
         if (instance == null)
@@ -33,9 +38,10 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         money = 0;
+        currenteLife = maxLife;
     }
     private void Update()
     {
-
+        lifeFill.fillAmount = CurrenteLife / maxLife;
     }
 }

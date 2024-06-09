@@ -6,14 +6,20 @@ public class ExplosionSpawner : MonoBehaviour
 {
     public GameObject explosion;
     GameObject explosionInstance;
-    void Start()
+
+    public bool canExplode;
+
+    public Transform pointSpawn;
+    private void Update()
     {
-        StartCoroutine(Spawn());
+        if (canExplode)
+        {
+            Spawn();
+        }
     }
-    public IEnumerator Spawn()
+    public void Spawn()
     {
-        yield return new WaitForSeconds(1);
-        if (explosionInstance == null)
-            explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
+        if (explosionInstance == null && pointSpawn != null)
+            explosionInstance = Instantiate(explosion, pointSpawn.position, Quaternion.identity);
     }
 }
