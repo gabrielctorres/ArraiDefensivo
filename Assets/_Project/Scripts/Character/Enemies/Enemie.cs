@@ -11,7 +11,8 @@ public class Enemie : Entity
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;
-    private PathCreator pathCreator;
+    public PathCreator pathCreator;
+    public float offSetMovement = 0.32f;
 
     float distanceTravalled;
 
@@ -19,8 +20,6 @@ public class Enemie : Entity
     public override void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (GameObject.Find("Path").GetComponent<PathCreator>() != null)
-            pathCreator = GameObject.Find("Path").GetComponent<PathCreator>();
         if (pathCreator != null)
             transform.position = pathCreator.path.GetPointAtDistance(0.5f);
     }
@@ -34,7 +33,9 @@ public class Enemie : Entity
     public void MoveInPath()
     {
         distanceTravalled += speed * Time.deltaTime;
-        rb.MovePosition(pathCreator.path.GetPointAtDistance(distanceTravalled));
+        Vector2 aux = pathCreator.path.GetPointAtDistance(distanceTravalled);
+        Vector2 fixedPosition = new Vector2(aux.x, aux.y + offSetMovement);
+        rb.MovePosition(fixedPosition);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

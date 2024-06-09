@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+
     [Header("Variaveis Gerais")]
+
     //Geral
     protected float currentLife;
     [SerializeField] protected float maxLife;
