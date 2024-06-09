@@ -131,11 +131,11 @@ public class EnemySpawner : MonoBehaviour
         }
         if (state == SpawnState.SPAWNING)
         {
-            anunciador.text = "Eles est�o vindo!!!";
+            anunciador.text = "Eles estao vindo!!!";
         }
         else
         {
-            anunciador.text = "Proxima wave vir� em " + countDown + " segundos";
+            anunciador.text = "Proxima wave vira em " + countDown + " segundos";
         }
         waveTxt.text = "Wave: " + currentWave;
     }

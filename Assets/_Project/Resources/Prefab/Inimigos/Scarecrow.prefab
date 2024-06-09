@@ -367,17 +367,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
-<<<<<<< HEAD
       propertyPath: damage
       value: 25
-=======
-      propertyPath: speed
-      value: 1.5
->>>>>>> 1f706778eba77da9dc6feba104f5ae80cbff3962
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: reward
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: maxLife
