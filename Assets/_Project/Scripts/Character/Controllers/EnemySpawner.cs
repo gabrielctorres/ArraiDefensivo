@@ -1,10 +1,13 @@
-using PathCreation;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
+    public enum SpawnState { SPAWNING, WATTING };
+    //public PathCreator pathCreator;
+
     [Header("Controle")]
     //Controle
     public bool startWave = false;
@@ -16,14 +19,17 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int EnemyTotal = 0;
     //Em segundos
     [SerializeField] private float enemiesPerSecond = 4;
-    [SerializeField] private float timeBetweenWaves = 5;
+    [SerializeField] private int timeBetweenWaves = 5;
     [SerializeField] private float difficultyMultiplier = 0.65f;
 
     public ParticleSystem spawnParticule;
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
-    //public PathCreator pathCreator;
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI anunciador;
+    [SerializeField] TextMeshProUGUI waveTxt;
+    public SpawnState state = SpawnState.SPAWNING;
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
@@ -31,12 +37,16 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesToSpawn;
     private bool isSpawning = false;
     private bool firstTime = true;
+    private int countDown;
 
     IEnumerator StartWave()
     {
+        state = SpawnState.WATTING;
         yield return new WaitForSeconds(timeBetweenWaves);
         isSpawning = true;
         enemiesToSpawn = EnemiesPerWave();
+        state = SpawnState.SPAWNING;
+        yield return null;
 
     }
     private int EnemiesPerWave()
@@ -70,6 +80,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void EndWave()
     {
+        countDown = timeBetweenWaves;
         firstTime = false;
         isSpawning = false;
         timeSinceLastSpawn = 0;
@@ -118,6 +129,15 @@ public class EnemySpawner : MonoBehaviour
                 EndWave();
             }
         }
+        if (state == SpawnState.SPAWNING)
+        {
+            anunciador.text = "Eles est�o vindo!!!";
+        }
+        else
+        {
+            anunciador.text = "Proxima wave vir� em " + countDown + " segundos";
+        }
+        waveTxt.text = "Wave: " + currentWave;
     }
 
 
