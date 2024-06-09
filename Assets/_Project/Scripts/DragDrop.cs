@@ -113,7 +113,7 @@ public class DragDrop : MonoBehaviour
 
     bool IsValidDropPosition()
     {
-        Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 1);
+        Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 0.3f);
         Collider2D[] overlap = Physics2D.OverlapCircleAll(newPos, rangeSnap, LayerMask.GetMask("Obstaculo"));
         return overlap.Length == 0;
     }
@@ -123,7 +123,7 @@ public class DragDrop : MonoBehaviour
     {
         if (objSelected != null)
         {
-            Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 1);
+            Vector2 newPos = new Vector2(objSelected.transform.position.x, objSelected.transform.position.y + 0.3f);
             Gizmos.DrawWireSphere(newPos, rangeSnap);
         }
 
