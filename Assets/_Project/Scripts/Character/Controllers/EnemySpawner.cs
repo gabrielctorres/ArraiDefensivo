@@ -22,7 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
-    public PathCreator pathCreator;
+    //public PathCreator pathCreator;
 
     private int currentWave = 1;
     private float timeSinceLastSpawn;
@@ -58,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
         {
             enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
         }
-        enemyInstance.GetComponent<Enemie>().pathCreator = pathCreator;
+        //enemyInstance.GetComponent<Enemie>().pathCreator = pathCreator;
         enemiesAlive++;
         enemiesToSpawn--;
     }

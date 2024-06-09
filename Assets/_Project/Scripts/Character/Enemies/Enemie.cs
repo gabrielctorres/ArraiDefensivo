@@ -11,7 +11,7 @@ public class Enemie : Entity
 
     [Header("Esqueci o nome")]
     [SerializeField] protected Rigidbody2D rb;
-    public PathCreator pathCreator;
+    private PathCreator pathCreator;
     public float offSetMovement = 0.32f;
 
     private Animator animator;
@@ -24,6 +24,8 @@ public class Enemie : Entity
         rb = GetComponent<Rigidbody2D>();
         if (pathCreator != null)
             transform.position = pathCreator.path.GetPointAtDistance(0.5f);
+        else
+            pathCreator = GameObject.Find("Path Creator").GetComponent<PathCreator>();
     }
 
     public void FixedUpdate()
