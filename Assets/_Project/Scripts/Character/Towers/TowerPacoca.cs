@@ -66,7 +66,7 @@ public class TowerPacoca : Tower
             Vector2 offset = new Vector2(0, i * 0.5f); // Offset to slightly separate the projectiles
             Vector2 spawnPosition = (Vector2)bulletOrigin.position + offset;
             GameObject instanceProjectile = Instantiate(prefabProjectile, spawnPosition, Quaternion.identity);
-
+            instanceProjectile.GetComponent<Bullet>().damage = damage;
             if (instanceProjectile.TryGetComponent<Bullet>(out Bullet bullet))
             {
                 bullet.Target = FindClosestTarget().transform;

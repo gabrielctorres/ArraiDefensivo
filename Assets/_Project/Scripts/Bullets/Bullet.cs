@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float damage;
     public Transform Target;
     public AnimationCurve curve;
     [SerializeField] private float duration = 1;
@@ -33,7 +34,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.GetComponent<Enemie>() != null)
         {
-            collision.GetComponent<Enemie>().TakeDamage(10f);
+            collision.GetComponent<Enemie>().TakeDamage(damage);
             Destroy(this.gameObject);
         }
     }

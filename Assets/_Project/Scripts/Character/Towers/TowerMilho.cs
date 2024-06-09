@@ -28,7 +28,7 @@ public class TowerMilho : Tower
     {
         GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
         instanceProjectile.GetComponent<Bullet>().Target = FindNearestTarget(targets).transform;
-
+        instanceProjectile.GetComponent<Bullet>().damage = damage;
         if (level >= 2)
             instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
 

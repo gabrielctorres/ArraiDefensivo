@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
@@ -6,11 +7,15 @@ public class Shop : MonoBehaviour
     [SerializeField] private GameObject button;
     [SerializeField] private TMPro.TextMeshProUGUI coinsText;
 
+    [SerializeField] private List<GameObject> towers = new List<GameObject>();
+
+    [SerializeField] private DragDrop dragDrop;
     // Start is called before the first frame update
     void Start()
     {
         menu.SetActive(false);
-        coinsText.text = "$: 0";
+        coinsText.text = "$: " + GameManager.instance.Money.ToString();
+
     }
 
     public void ButtonExitShop()
@@ -23,10 +28,19 @@ public class Shop : MonoBehaviour
         menu.SetActive(true);
         button.SetActive(false);
     }
-    public void UpdateCoins(int coins)
+    private void Update()
     {
-        coinsText.text = "$: "+coins.ToString();
+        coinsText.text = "$: " + GameManager.instance.Money.ToString();
     }
 
+    public void BuyTower(int index)
+    {
+        GameObject towerInstance = null;
+        if (towerInstance == null)
+        {
+            towerInstance = Instantiate(towers[index]);
+            dragDrop.AddDragObject(towerInstance);
+        }
+    }
 
 }

@@ -14,6 +14,7 @@ public class Enemie : Entity
     private PathCreator pathCreator;
     public float offSetMovement = 0.32f;
 
+    public float reward;
     private Animator animator;
     float distanceTravalled;
 
@@ -37,7 +38,28 @@ public class Enemie : Entity
         if (canMove && pathCreator != null)
             MoveInPath();
     }
+    public override void VerifyLife()
+    {
+        imageLifeFill.fillAmount = currentLife / maxLife;
+        if (currentLife <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
+    }
+    public override void TakeDamage(float damageToRecive)
+    {
+        if ((currentLife - damageToRecive) <= 0)
+        {
+            GameManager.instance.Money += reward;
+        }
+
+
+        if (currentLife > 0)
+        {
+            currentLife -= damageToRecive;
+        }
+    }
     public void MoveInPath()
     {
         distanceTravalled += speed * Time.deltaTime;

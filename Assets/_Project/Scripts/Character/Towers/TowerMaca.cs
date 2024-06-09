@@ -30,13 +30,11 @@ public class TowerMaca : Tower
         tierHealCount = Mathf.Min(level, 3);
 
         List<GameObject> towersToHeal = FindNearestTargets(towers, tierHealCount);
-        Debug.Log(towersToHeal.Count);
-        Debug.Log(tierHealCount);
         foreach (GameObject tower in towersToHeal)
         {
             if (tower != null)
             {
-                tower.GetComponent<Tower>().Heal(10f);
+                tower.GetComponent<Tower>().Heal(damage);
                 TakeDamage(10f);
                 instanceParticule = Instantiate(particule, tower.transform.position, Quaternion.identity, tower.transform);
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DragDrop : MonoBehaviour
 {
@@ -11,7 +10,7 @@ public class DragDrop : MonoBehaviour
     private Vector2 oldPosition;
     private bool isValidPosition;
 
-    bool inMousePosition = false;
+    private bool inMousePosition = false;
 
     void Start()
     {
@@ -35,10 +34,36 @@ public class DragDrop : MonoBehaviour
             DropObject();
         }
 
-        if (inMousePosition) DragObject();
+        if (inMousePosition)
+        {
+            DragObject();
+        }
 
-        if (!isValidPosition) ChangeIndicatorColor(Color.red);
-        else ChangeIndicatorColor(Color.blue);
+        if (!isValidPosition)
+        {
+            ChangeIndicatorColor(Color.red);
+        }
+        else
+        {
+            ChangeIndicatorColor(Color.blue);
+        }
+    }
+
+    public void AddDragObject(GameObject obj)
+    {
+  
+        if (objSelected != null)
+        {
+            Debug.LogWarning("Another object is already being dragged!");
+            DropObject(); 
+        }
+
+        objSelected = obj;
+        oldPosition = objSelected.transform.position;
+        objSelected.transform.parent = this.transform;
+        objSelected.GetComponent<Tower>().enabled = false;
+        inMousePosition = true;
+        DragObject(); 
     }
 
     void CheckHitObject()
@@ -49,7 +74,8 @@ public class DragDrop : MonoBehaviour
         {
             objSelected = hit2D.transform.gameObject;
             oldPosition = objSelected.transform.position;
-            objSelected.transform.parent = this.transform; // Set parent to this object to move together
+            objSelected.transform.parent = this.transform;
+            objSelected.GetComponent<Tower>().enabled = false;
         }
     }
 
@@ -68,15 +94,21 @@ public class DragDrop : MonoBehaviour
         if (isValidPosition)
         {
             ChangeColorSprite(1);
-            if (objSelected != null) objSelected.GetComponent<Tower>().enabled = true;
+            if (objSelected != null)
+            {
+                objSelected.GetComponent<Tower>().enabled = true;
+            }
 
             objSelected.transform.parent = null;
             objSelected = null;
             inMousePosition = false;
         }
+        else
+        {
+            objSelected.transform.position = oldPosition;
+            inMousePosition = true; 
+        }
     }
-
-
 
     bool IsValidDropPosition()
     {
@@ -93,6 +125,7 @@ public class DragDrop : MonoBehaviour
             objSelected.GetComponent<SpriteRenderer>().color = temp;
         }
     }
+
     public void ChangeIndicatorColor(Color color)
     {
         if (objSelected != null)

@@ -10,7 +10,7 @@ public class Entity : MonoBehaviour
     [SerializeField] protected float maxLife;
 
     public Image imageLifeFill;
-    protected float damage;
+    [SerializeField] protected float damage;
 
     //Interno
     public int level;

@@ -370,13 +370,21 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1817342444, guid: a7c6ac3aa4f571146bc9eb93234d83f9, type: 3}
+    - target: {fileID: 6750104660787208037, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: speed
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
+      propertyPath: reward
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: maxLife
-      value: 100
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: currentSpeed
