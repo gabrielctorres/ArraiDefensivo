@@ -2012,6 +2012,7 @@ MonoBehaviour:
   enemiesPerSecond: 1
   timeBetweenWaves: 2
   difficultyMultiplier: 0.5
+  pathCreator: {fileID: 2050065660}
 --- !u!4 &1060882934
 Transform:
   m_ObjectHideFlags: 0
@@ -5640,7 +5641,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 0
+    vertexPathUpToDate: 1
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0.01
     showTransformTool: 1

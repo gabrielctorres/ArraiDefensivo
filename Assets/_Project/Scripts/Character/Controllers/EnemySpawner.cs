@@ -1,3 +1,4 @@
+using PathCreation;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
 
+    public PathCreator pathCreator;
+
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
@@ -41,14 +44,21 @@ public class EnemySpawner : MonoBehaviour
     }
     void SpawnEnemies()
     {
-        if(Random.Range(0,2)%2 == 0)
+        int random = Random.Range(0, 3);
+        GameObject enemyInstance;
+        if(random == 0)
         {
-            Instantiate(enemyPrefabs[0], transform.position, Quaternion.identity);
+            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
+        }
+        else if (random == 1)
+        {
+            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
         }
         else
         {
-            Instantiate(enemyPrefabs[1], transform.position, Quaternion.identity);
+            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
         }
+        enemyInstance.GetComponent<Enemie>().pathCreator = pathCreator;
         enemiesAlive++;
         enemiesToSpawn--;
     }
