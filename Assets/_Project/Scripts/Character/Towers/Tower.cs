@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-using UnityEngine.UI;
 public abstract class Tower : Entity
 {
     [SerializeField] protected float fireRate = 1f;
@@ -49,7 +47,7 @@ public abstract class Tower : Entity
             levelUPEffect.gameObject.SetActive(true);
             levelUPEffect.Play();
             GameManager.instance.Money -= coastUpgrade;
-            coastUpgrade *= 1.3f;
+            coastUpgrade *= 1.7f;
         }
     }
     public override void Update()
