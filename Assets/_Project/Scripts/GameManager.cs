@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        money = 0;
+        money = 100;
     }
     private void Update()
     {
