@@ -4,12 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-<<<<<<< HEAD
   m_Scenes: []
-=======
-  m_Scenes:
-  - enabled: 1
-    path: Assets/_Project/Resources/Scenes/CenaSmite.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
->>>>>>> 491095a92e29e555844dd92ceef0bacd603567c8
   m_configObjects: {}

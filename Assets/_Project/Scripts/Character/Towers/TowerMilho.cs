@@ -32,7 +32,7 @@ public class TowerMilho : Tower
         if (level >= 2)
             instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
 
-        if (level == 3) instanceProjectile.GetComponent<ExplosionBehavior>().enabled = true;
+        if (level == 3) instanceProjectile.GetComponent<ExplosionSpawner>().enabled = true;
     }
     private void OnTriggerEnter2D(Collider2D other)
     {

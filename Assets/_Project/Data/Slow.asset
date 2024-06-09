@@ -16,4 +16,4 @@ MonoBehaviour:
   descripton: Slow
   visualEffect: {fileID: 0}
   cooldown: 1
-  tickSpeed: 1
+  tickSpeed: 5

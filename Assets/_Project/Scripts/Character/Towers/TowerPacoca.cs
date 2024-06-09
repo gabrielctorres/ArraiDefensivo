@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TowerPacoca : Tower
 {
     public List<GameObject> pacocaObjects = new List<GameObject>();
-    int index = 0;
-    int aux;
+    private int index = 0;
+    private int aux = 0;
+    private int countProjectile = 1;
+
     public override void Start()
     {
         base.Start();
@@ -22,10 +25,8 @@ public class TowerPacoca : Tower
         }
     }
 
-
     public override void TakeDamage(float damageToRecive)
     {
-
         if (currentLife > 0)
         {
             currentLife -= damageToRecive;
@@ -33,7 +34,7 @@ public class TowerPacoca : Tower
 
             if (aux == 2)
             {
-                if (index < (pacocaObjects.Count - 1) && pacocaObjects[index].activeInHierarchy)
+                if (index < pacocaObjects.Count && pacocaObjects[index].activeInHierarchy)
                 {
                     pacocaObjects[index].SetActive(false);
                     index++;
@@ -47,20 +48,37 @@ public class TowerPacoca : Tower
                 index = 0;
             }
         }
-
     }
 
     public override void InstantateProjectile()
     {
-        GameObject instanceProjectile = Instantiate(prefabProjectile, bulletOrigin.position, Quaternion.identity);
-        instanceProjectile.GetComponent<Bullet>().Target = FindClosestTarget().transform;
+        if (level == 3)
+        {
+            countProjectile = 2;
+        }
+        else
+        {
+            countProjectile = 1;
+        }
 
-        if (level >= 2)
-            instanceProjectile.GetComponent<DebuffGiver>().enabled = true;
+        for (int i = 0; i < countProjectile; i++)
+        {
+            Vector2 offset = new Vector2(0, i * 0.5f); // Offset to slightly separate the projectiles
+            Vector2 spawnPosition = (Vector2)bulletOrigin.position + offset;
+            GameObject instanceProjectile = Instantiate(prefabProjectile, spawnPosition, Quaternion.identity);
 
-        //if (level == 3) instanceProjectile.GetComponent<ExplosionBehavior>().enabled = true;
+            if (instanceProjectile.TryGetComponent<Bullet>(out Bullet bullet))
+            {
+                bullet.Target = FindClosestTarget().transform;
+            }
 
+            if (level >= 2 && instanceProjectile.TryGetComponent<DebuffGiver>(out DebuffGiver debuffGiver))
+            {
+                debuffGiver.enabled = true;
+            }
+        }
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.GetComponent<Enemie>() != null)

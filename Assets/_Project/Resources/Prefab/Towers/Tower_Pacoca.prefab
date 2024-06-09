@@ -188,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868411897600976289}
   - component: {fileID: 868411897600976290}
+  - component: {fileID: 1634219224}
   m_Layer: 0
   m_Name: pacoca01
   m_TagString: Untagged
@@ -262,6 +263,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1634219224
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868411897600976288}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 44730b21e5398994a8ea72038f863a17, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &868411897642794721
 GameObject:
   m_ObjectHideFlags: 0
@@ -272,6 +294,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868411897642794722}
   - component: {fileID: 868411897642794723}
+  - component: {fileID: 2122038855}
   m_Layer: 0
   m_Name: pacoca04
   m_TagString: Untagged
@@ -346,6 +369,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &2122038855
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868411897642794721}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 957730cb57798dd408ab0426833a4e96, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &868411897692111103
 GameObject:
   m_ObjectHideFlags: 0
@@ -356,6 +400,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868411897692111096}
   - component: {fileID: 868411897692111097}
+  - component: {fileID: 1323982772}
   m_Layer: 0
   m_Name: pacoca03
   m_TagString: Untagged
@@ -430,6 +475,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1323982772
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868411897692111103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2c89a164524e7fc48afbbed9b3730e1a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &868411897748105673
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,7 +671,7 @@ MonoBehaviour:
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 0.956
+  m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 3
   m_UseSpriteMesh: 0
@@ -726,11 +792,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 100
-  level: 0
+  level: 3
   fireRate: 1
   prefabProjectile: {fileID: 4612058029918503865, guid: 3150554e1d3581249a4b4f664b3a3748, type: 3}
   bulletOrigin: {fileID: 868411898089950459}
   targets: []
+  towers: []
+  imageLifeFill: {fileID: 868411898547285030}
+  animator: {fileID: 0}
   pacocaObjects:
   - {fileID: 868411897600976288}
   - {fileID: 868411899147348980}
@@ -784,6 +853,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868411898934560863}
   - component: {fileID: 868411898934560856}
+  - component: {fileID: 1860094288}
   m_Layer: 0
   m_Name: pacoca05
   m_TagString: Untagged
@@ -858,6 +928,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1860094288
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868411898934560862}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c066813cc825e4740bbd3efbc1fee590, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &868411899147348980
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,6 +959,7 @@ GameObject:
   m_Component:
   - component: {fileID: 868411899147348981}
   - component: {fileID: 868411899147348982}
+  - component: {fileID: 1457943427}
   m_Layer: 0
   m_Name: pacoca02
   m_TagString: Untagged
@@ -942,6 +1034,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!95 &1457943427
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868411899147348980}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 556c65dfa97dae744b9ff4a72ab8101f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &868411899194955645
 GameObject:
   m_ObjectHideFlags: 0

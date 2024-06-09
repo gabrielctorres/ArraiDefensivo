@@ -4,25 +4,47 @@ using UnityEngine;
 
 public class ExplosionBehavior : MonoBehaviour
 {
-    CircleCollider2D coll2D;
+    private CircleCollider2D coll2D;
+    private ParticleSystem explosionParticles;
+
     void Start()
     {
         coll2D = GetComponent<CircleCollider2D>();
-        Explosion();
+        explosionParticles = GetComponentInChildren<ParticleSystem>();
+
+        if (coll2D == null)
+        {
+            Debug.LogError("CircleCollider2D not found.");
+            return;
+        }
+
+        if (explosionParticles == null)
+        {
+            Debug.LogError("ParticleSystem not found.");
+            return;
+        }
+
+        StartCoroutine(Explosion());
     }
 
-    public void Explosion()
+    private IEnumerator Explosion()
     {
+        coll2D.enabled = true;
+        explosionParticles.Play();
+
+        yield return new WaitForSeconds(2f);
+
+        coll2D.enabled = false;
         coll2D.radius = 0.5f;
+        Destroy(gameObject, 2f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<Enemie>() != null)
+        Enemie enemy = other.GetComponent<Enemie>();
+        if (enemy != null)
         {
-            other.GetComponent<Enemie>().TakeDamage(4f);
-            this.GetComponentInChildren<ParticleSystem>().Play();
+            enemy.TakeDamage(4f);
         }
-
     }
 }

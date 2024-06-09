@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class TowerMaca : Tower
 {
-
     public GameObject particule;
-    GameObject instanceParticule;
+    private GameObject instanceParticule;
+    private int tierHealCount = 1;
+
     public override void Start()
     {
         base.Start();
     }
 
-    // Update is called once per frame
     public override void Update()
     {
         base.Update();
@@ -22,17 +23,44 @@ public class TowerMaca : Tower
             Attack();
         }
     }
+
     public override void Attack(float damageTogive = 0)
     {
-        GameObject tower = FindNearestTarget(towers);
-        if (tower != null)
+
+        tierHealCount = Mathf.Min(level, 3);
+
+        List<GameObject> towersToHeal = FindNearestTargets(towers, tierHealCount);
+        Debug.Log(towersToHeal.Count);
+        Debug.Log(tierHealCount);
+        foreach (GameObject tower in towersToHeal)
         {
-            tower.GetComponent<Tower>().Heal(10f);
-            if (instanceParticule == null)
+            if (tower != null)
+            {
+                tower.GetComponent<Tower>().Heal(10f);
+                TakeDamage(10f);
                 instanceParticule = Instantiate(particule, tower.transform.position, Quaternion.identity, tower.transform);
 
-            TakeDamage(10f);
+            }
         }
+
+    }
+
+    private List<GameObject> FindNearestTargets(List<GameObject> availableTowers, int count)
+    {
+        List<GameObject> nearestTargets = new List<GameObject>();
+        Vector2 currentPosition = transform.position;
+
+        // Ordena as torres pela distância em relação à torre atual
+        availableTowers.Sort((a, b) =>
+            Vector2.Distance(currentPosition, a.transform.position).CompareTo(Vector2.Distance(currentPosition, b.transform.position)));
+
+        // Adiciona as torres mais próximas até o limite especificado
+        for (int i = 0; i < Mathf.Min(count, availableTowers.Count); i++)
+        {
+            nearestTargets.Add(availableTowers[i]);
+        }
+
+        return nearestTargets;
     }
 
     public override void InstantateProjectile()
@@ -47,6 +75,7 @@ public class TowerMaca : Tower
             towers.Add(other.gameObject);
         }
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.GetComponent<Tower>() != null)

@@ -1,4 +1,4 @@
-    using PathCreation;
+using PathCreation;
 using UnityEngine;
 
 public class Enemie : Entity
@@ -14,11 +14,13 @@ public class Enemie : Entity
     public PathCreator pathCreator;
     public float offSetMovement = 0.32f;
 
+    private Animator animator;
     float distanceTravalled;
 
     // Start is called before the first frame update
     public override void Start()
     {
+        animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         if (pathCreator != null)
             transform.position = pathCreator.path.GetPointAtDistance(0.5f);
@@ -36,6 +38,8 @@ public class Enemie : Entity
         Vector2 aux = pathCreator.path.GetPointAtDistance(distanceTravalled);
         Vector2 fixedPosition = new Vector2(aux.x, aux.y + offSetMovement);
         rb.MovePosition(fixedPosition);
+        animator.SetFloat("Horizontal", pathCreator.path.GetDirectionAtDistance(distanceTravalled).x);
+        animator.SetFloat("Vertical", pathCreator.path.GetDirectionAtDistance(distanceTravalled).y);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -13,15 +13,20 @@ public abstract class Tower : Entity
     public List<GameObject> targets = new List<GameObject>();
     public List<GameObject> towers = new List<GameObject>();
     public Image imageLifeFill;
+    public Animator animator;
     public override void Start()
     {
         base.Start();
+        animator = GetComponent<Animator>();
+        if (animator != null)
+            animator.SetBool("Start", true);
         gameObject.layer = LayerMask.NameToLayer("Obstaculo");
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 
     public virtual void VerifyLife()
     {
+
         imageLifeFill.fillAmount = currentLife / maxLife;
         if (currentLife <= 0)
         {
@@ -32,6 +37,8 @@ public abstract class Tower : Entity
     public override void Update()
     {
         VerifyLife();
+        if (animator != null)
+            animator.SetFloat("Life", currentLife);
     }
 
     public override void Attack(float damageTogive = 0)
@@ -76,7 +83,7 @@ public abstract class Tower : Entity
         }
         return nearestObject;
     }
-    public GameObject FindNearestTarget(List<GameObject> objects)
+    public virtual GameObject FindNearestTarget(List<GameObject> objects)
     {
         if (objects == null || objects.Count == 0)
         {

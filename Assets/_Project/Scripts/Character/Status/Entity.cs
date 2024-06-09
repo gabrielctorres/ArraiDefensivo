@@ -6,16 +6,17 @@ public class Entity : MonoBehaviour
     [Header("Variaveis Gerais")]
 
     //Geral
-    protected float currentLife;
+    protected float currentLife = 100f;
     [SerializeField] protected float maxLife;
     protected float damage;
 
     //Interno
-    public float level;
+    public int level;
 
     public virtual void Start()
     {
         currentLife = maxLife;
+        level = 1;
     }
     public virtual void Update()
     {
