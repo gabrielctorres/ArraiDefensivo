@@ -1,23 +1,17 @@
-using UnityEditor;
 using UnityEngine;
 
-public class UIStuff : MonoBehaviour
+public class Shop : MonoBehaviour
 {
     [SerializeField] private GameObject menu;
     [SerializeField] private GameObject button;
+    [SerializeField] private TMPro.TextMeshProUGUI coinsText;
 
     // Start is called before the first frame update
     void Start()
     {
         menu.SetActive(false);
+        coinsText.text = "$: 0";
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
 
     public void ButtonExitShop()
     {
@@ -29,5 +23,10 @@ public class UIStuff : MonoBehaviour
         menu.SetActive(true);
         button.SetActive(false);
     }
+    public void UpdateCoins(int coins)
+    {
+        coinsText.text = "$: "+coins.ToString();
+    }
+
 
 }
