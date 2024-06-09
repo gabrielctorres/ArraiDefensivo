@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Entity : MonoBehaviour
 {
 
@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
     //Geral
     protected float currentLife = 100f;
     [SerializeField] protected float maxLife;
+
+    public Image imageLifeFill;
     protected float damage;
 
     //Interno
@@ -22,7 +24,15 @@ public class Entity : MonoBehaviour
     {
 
     }
+    public virtual void VerifyLife()
+    {
 
+        imageLifeFill.fillAmount = currentLife / maxLife;
+        if (currentLife <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     public virtual void Attack(float damageTogive = 0) { }
 
     public virtual void TakeDamage(float damageToRecive)

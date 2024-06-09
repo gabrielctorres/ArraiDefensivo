@@ -12,7 +12,7 @@ public abstract class Tower : Entity
     public Transform bulletOrigin;
     public List<GameObject> targets = new List<GameObject>();
     public List<GameObject> towers = new List<GameObject>();
-    public Image imageLifeFill;
+
     public Animator animator;
     public override void Start()
     {
@@ -24,7 +24,7 @@ public abstract class Tower : Entity
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
 
-    public virtual void VerifyLife()
+    public override void VerifyLife()
     {
 
         imageLifeFill.fillAmount = currentLife / maxLife;

@@ -27,7 +27,11 @@ public class Enemie : Entity
         else
             pathCreator = GameObject.Find("Path Creator").GetComponent<PathCreator>();
     }
-
+    public override void Update()
+    {
+        base.Update();
+        VerifyLife();
+    }
     public void FixedUpdate()
     {
         if (canMove && pathCreator != null)

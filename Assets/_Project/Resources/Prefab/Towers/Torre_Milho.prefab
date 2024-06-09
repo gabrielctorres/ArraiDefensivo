@@ -311,7 +311,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3663937646756154463
 Transform:
   m_ObjectHideFlags: 0
@@ -432,13 +432,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 100
+  imageLifeFill: {fileID: 1398105839}
   level: 3
   fireRate: 1
   prefabProjectile: {fileID: 5088030167037961687, guid: 025aacd07860a934ab14b4ab45c5c673, type: 3}
   bulletOrigin: {fileID: 3663937648280387199}
   targets: []
   towers: []
-  imageLifeFill: {fileID: 1398105839}
   animator: {fileID: 773609745}
 --- !u!95 &773609745
 Animator:

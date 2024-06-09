@@ -15,5 +15,5 @@ MonoBehaviour:
   nameEffect: Foguinho
   descripton: fogooo
   visualEffect: {fileID: 2585563641786215818, guid: de42c4f6917d00f4bb9b4a99ebefcd8b, type: 3}
-  cooldown: 2
+  cooldown: 1
   tickSpeed: 1

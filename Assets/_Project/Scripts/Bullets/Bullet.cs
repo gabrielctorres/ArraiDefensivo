@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -25,15 +26,15 @@ public class Bullet : MonoBehaviour
             var heightTime = curve.Evaluate(linearTime);
             var height = Mathf.Lerp(0, maxHeightY, heightTime);
             transform.position = Vector3.Lerp(start, end, linearTime) + new Vector3(0, height, 0); //adding values on y axis
-            if (transform.position == end)
-            {
-                Destroy(this.gameObject);
-            }
             yield return null;
         }
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.GetComponent<Enemie>() != null)
+        {
+            collision.GetComponent<Enemie>().TakeDamage(10f);
+            Destroy(this.gameObject);
+        }
     }
 }
