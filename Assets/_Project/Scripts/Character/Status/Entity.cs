@@ -22,7 +22,7 @@ public class Entity : MonoBehaviour
     }
     public virtual void Start()
     {
-
+        currentLife = maxLife;
     }
     public virtual void Update()
     {

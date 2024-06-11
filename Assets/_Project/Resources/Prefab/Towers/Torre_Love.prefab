@@ -602,7 +602,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -843,7 +843,7 @@ MonoBehaviour:
   buttonUpgrade: {fileID: 409724626}
   txtLevel: {fileID: 1556460386}
   coastUpgrade: 25
-  animator: {fileID: 0}
+  animator: {fileID: 635973200}
   levelUPEffect: {fileID: 7206431604926157473}
   particule: {fileID: 6618617908228230038, guid: baba7b1ac6613f941a783fb4bb1672c0, type: 3}
 --- !u!50 &1302298312443533536

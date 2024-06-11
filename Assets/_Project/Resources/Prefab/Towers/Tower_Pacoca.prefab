@@ -1167,7 +1167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 200
   imageLifeFill: {fileID: 868411898547285030}
-  damage: 20
+  damage: 6
   level: 3
   fireRate: 1
   prefabProjectile: {fileID: 4612058029918503865, guid: 3150554e1d3581249a4b4f664b3a3748, type: 3}
@@ -1487,7 +1487,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

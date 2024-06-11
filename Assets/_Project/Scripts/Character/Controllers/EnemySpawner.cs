@@ -5,14 +5,14 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WATTING };
+    public enum SpawnState { SPAWNING, WAITING };
     //public PathCreator pathCreator;
 
     [Header("Controle")]
     //Controle
     public bool startWave = false;
 
-    [Header("Vari�veis")]
+    [Header("Variáveis")]
     //Variaveis
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private float baseStartEnemies = 5;
@@ -41,43 +41,51 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator StartWave()
     {
-        state = SpawnState.WATTING;
+        state = SpawnState.WAITING;
+        countDown = timeBetweenWaves;
+
+       
+        StartCoroutine(Countdown());
+
+     
         yield return new WaitForSeconds(timeBetweenWaves);
+
         isSpawning = true;
         enemiesToSpawn = EnemiesPerWave();
         state = SpawnState.SPAWNING;
         yield return null;
-
     }
+
+    private IEnumerator Countdown()
+    {
+        while (countDown > 0)
+        {
+            if (anunciador != null)
+                anunciador.text = "Próxima wave virá em " + countDown + " segundos";
+            yield return new WaitForSeconds(1f);
+            countDown--;
+        }
+    }
+
     private int EnemiesPerWave()
     {
         return EnemyTotal = (int)(baseStartEnemies * Mathf.Pow(currentWave, difficultyMultiplier));
     }
+
     void SpawnEnemies()
     {
-        int random = Random.Range(0, 3);
-        GameObject enemyInstance;
+        int random = Random.Range(0, enemyPrefabs.Length);
+        GameObject enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
         spawnParticule.Play();
-        if (random == 0)
-        {
-            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
-        }
-        else if (random == 1)
-        {
-            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
-        }
-        else
-        {
-            enemyInstance = Instantiate(enemyPrefabs[random], transform.position, Quaternion.identity);
-        }
-        //enemyInstance.GetComponent<Enemie>().pathCreator = pathCreator;
         enemiesAlive++;
         enemiesToSpawn--;
     }
+
     private void EnemyDestroyed()
     {
         enemiesAlive--;
     }
+
     void EndWave()
     {
         countDown = timeBetweenWaves;
@@ -88,10 +96,12 @@ public class EnemySpawner : MonoBehaviour
         GameManager.instance.Money += 50;
         StartCoroutine(StartWave());
     }
+
     private void OnEnable()
     {
         onEnemyDestroy.AddListener(EnemyDestroyed);
     }
+
     private void OnDisable()
     {
         onEnemyDestroy.RemoveListener(EnemyDestroyed);
@@ -132,14 +142,15 @@ public class EnemySpawner : MonoBehaviour
         }
         if (state == SpawnState.SPAWNING)
         {
-            anunciador.text = "Eles estao vindo!!!";
+            if (anunciador != null)
+                anunciador.text = "Eles estão vindo!!!";
         }
         else
         {
-            anunciador.text = "Proxima wave vira em " + countDown + " segundos";
+            if (anunciador != null && countDown > 0)
+                anunciador.text = "Próxima wave virá em " + countDown + " segundos";
         }
-        waveTxt.text = "Wave: " + currentWave;
+        if (waveTxt != null)
+            waveTxt.text = "Wave: " + currentWave;
     }
-
-
 }

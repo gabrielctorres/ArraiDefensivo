@@ -84,17 +84,14 @@ public class DragDrop : MonoBehaviour
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, Camera.main.nearClipPlane + 10f));
         objSelected.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
-        ChangeColorSprite(0.5f);
-
         isValidPosition = IsValidDropPosition();
-        ChangeColorSprite(isValidPosition ? 0.5f : 0.2f);
     }
 
     void DropObject()
     {
         if (isValidPosition)
         {
-            ChangeColorSprite(1);
+
             if (objSelected != null)
             {
                 objSelected.GetComponent<Tower>().enabled = true;
@@ -128,15 +125,7 @@ public class DragDrop : MonoBehaviour
         }
 
     }
-    public void ChangeColorSprite(float alphaValue)
-    {
-        if (objSelected != null)
-        {
-            Color temp = objSelected.GetComponent<SpriteRenderer>().color;
-            temp.a = alphaValue;
-            objSelected.GetComponent<SpriteRenderer>().color = temp;
-        }
-    }
+
 
     public void ChangeIndicatorColor(Color color)
     {

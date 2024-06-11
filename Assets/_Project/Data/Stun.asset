@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91774dbc7b95b4142a809432a58562c1, type: 3}
-  m_Name: Slow
+  m_Name: Stun
   m_EditorClassIdentifier: 
   nameEffect: Slow
   descripton: Slow
-  visualEffect: {fileID: 0}
-  cooldown: 1
-  tickSpeed: 5
+  visualEffect: {fileID: 7284557945305243579, guid: 39665b54fb816ee44bc73d5c8dba88c2, type: 3}
+  cooldown: 5
+  tickSpeed: 2

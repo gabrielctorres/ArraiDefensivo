@@ -2,16 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 public class GameManager : MonoBehaviour
 {
 
     public static GameManager instance;
-
     public Image lifeFill;
 
+    public TextMeshProUGUI lifeTxt;
+    public TextMeshProUGUI velocityTxt;
     private float money;
     private float currenteLife;
     public float maxLife;
+
+
     public float Money
     {
         get { return money; }
@@ -43,5 +48,14 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         lifeFill.fillAmount = CurrenteLife / maxLife;
+        lifeTxt.text = CurrenteLife.ToString() + " / " + maxLife.ToString();
+        velocityTxt.text = Time.timeScale.ToString() + "x";
+    }
+    public void UpdateVelocity()
+    {
+        if (Time.timeScale == 1)
+            Time.timeScale = 2;
+        else if (Time.timeScale == 2)
+            Time.timeScale = 1;
     }
 }

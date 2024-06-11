@@ -20,9 +20,10 @@ public abstract class Tower : Entity
     public override void Start()
     {
         base.Start();
-        animator = GetComponent<Animator>();
+
         if (animator != null)
             animator.SetBool("Start", true);
+
         gameObject.layer = LayerMask.NameToLayer("Obstaculo");
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
     }
