@@ -807,16 +807,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 50
   imageLifeFill: {fileID: 1398105839}
-  damage: 35
+  damage: 40
   level: 1
   fireRate: 1
+  selfDamage: 4
   prefabProjectile: {fileID: 5088030167037961687, guid: 025aacd07860a934ab14b4ab45c5c673, type: 3}
   bulletOrigin: {fileID: 3663937648280387199}
   targets: []
   towers: []
   buttonUpgrade: {fileID: 1675063003}
   txtLevel: {fileID: 74670960}
-  coastUpgrade: 75
+  coastUpgrade: 60
   animator: {fileID: 773609745}
   levelUPEffect: {fileID: 4330838582262401115}
 --- !u!95 &773609745

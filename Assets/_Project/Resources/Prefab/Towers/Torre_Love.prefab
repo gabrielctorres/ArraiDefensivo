@@ -831,11 +831,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f864790136be9840ac1fb7d792b8eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 105
+  maxLife: 90
   imageLifeFill: {fileID: 1302298311612998758}
-  damage: 7
+  damage: 9
   level: 0
   fireRate: 1.7
+  selfDamage: 5
   prefabProjectile: {fileID: 0}
   bulletOrigin: {fileID: 0}
   targets: []

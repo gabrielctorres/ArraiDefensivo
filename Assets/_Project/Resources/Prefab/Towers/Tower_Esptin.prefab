@@ -425,9 +425,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxLife: 50
   imageLifeFill: {fileID: 7759967515708095636}
-  damage: 10.5
+  damage: 13
   level: 1
   fireRate: 2
+  selfDamage: 3.2
   prefabProjectile: {fileID: 0}
   bulletOrigin: {fileID: 7759967513953596881}
   targets: []

@@ -2,15 +2,13 @@ using UnityEngine;
 using TMPro;
 public class WaveManager : MonoBehaviour
 {
-    public enum SpawnState { SPAWNING, WATTING};
+    public enum SpawnState { SPAWNING, WATTING };
 
     public TextMeshProUGUI Anunciador;
 
     public int contador;
     public float timeBetweenWaves = 5f;
     public float waveCountdown;
-
-    private float searchCountdown = 1f;
 
     public SpawnState state = SpawnState.SPAWNING;
 

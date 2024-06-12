@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("UI")]
     [SerializeField] TextMeshProUGUI anunciador;
     [SerializeField] TextMeshProUGUI waveTxt;
+    [SerializeField] TextMeshProUGUI wavePauseTxt;
     public SpawnState state = SpawnState.SPAWNING;
 
     private int currentWave = 1;
@@ -44,10 +45,10 @@ public class EnemySpawner : MonoBehaviour
         state = SpawnState.WAITING;
         countDown = timeBetweenWaves;
 
-       
+
         StartCoroutine(Countdown());
 
-     
+
         yield return new WaitForSeconds(timeBetweenWaves);
 
         isSpawning = true;
@@ -61,7 +62,11 @@ public class EnemySpawner : MonoBehaviour
         while (countDown > 0)
         {
             if (anunciador != null)
-                anunciador.text = "Próxima wave virá em " + countDown + " segundos";
+            {
+                if (firstTime) anunciador.text = "O Jogo vai começar em " + countDown + " segundos";
+                else anunciador.text = "Próxima wave virá em " + countDown + " segundos";
+            }
+
             yield return new WaitForSeconds(1f);
             countDown--;
         }
@@ -110,15 +115,8 @@ public class EnemySpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (firstTime)
-        {
-            isSpawning = true;
-            enemiesToSpawn = EnemiesPerWave();
-        }
-        else
-        {
-            StartCoroutine(StartWave());
-        }
+        StartCoroutine(StartWave());
+
     }
 
     // Update is called once per frame
@@ -150,7 +148,7 @@ public class EnemySpawner : MonoBehaviour
             if (anunciador != null && countDown > 0)
                 anunciador.text = "Próxima wave virá em " + countDown + " segundos";
         }
-        if (waveTxt != null)
-            waveTxt.text = "Wave: " + currentWave;
+        if (waveTxt != null) waveTxt.text = "Wave: " + currentWave;
+        if (wavePauseTxt != null) wavePauseTxt.text = "SOBREVIVEU POR " + currentWave + " WAVES";
     }
 }

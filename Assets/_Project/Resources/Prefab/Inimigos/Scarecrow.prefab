@@ -380,7 +380,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: reward
-      value: 30
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 6750104660787208038, guid: 467193e14ec336d46ad2f7defa75028d, type: 3}
       propertyPath: maxLife

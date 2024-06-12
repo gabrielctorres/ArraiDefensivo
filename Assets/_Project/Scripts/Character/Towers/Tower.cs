@@ -7,6 +7,8 @@ public abstract class Tower : Entity
     [SerializeField] protected float fireRate = 1f;
     protected float nextFire;
 
+    public float selfDamage;
+
     public GameObject prefabProjectile;
     public Transform bulletOrigin;
     public List<GameObject> targets = new List<GameObject>();
@@ -56,9 +58,11 @@ public abstract class Tower : Entity
         if (GameManager.instance.Money >= coastUpgrade && level < 3)
         {
             buttonUpgrade.SetActive(true);
-
         }
-        txtLevel.text = level.ToString();
+
+        if (GameManager.instance.Money < coastUpgrade) buttonUpgrade.SetActive(false);
+
+        txtLevel.text = level.ToString();   
         VerifyLife();
         if (animator != null)
             animator.SetFloat("Life", currentLife);

@@ -9,7 +9,6 @@ public class TowerPacoca : Tower
     public List<GameObject> pacocaObjects = new List<GameObject>();
     private int index = 0;
     private int aux = 0;
-    private int countProjectile = 1;
 
     public override void Start()
     {

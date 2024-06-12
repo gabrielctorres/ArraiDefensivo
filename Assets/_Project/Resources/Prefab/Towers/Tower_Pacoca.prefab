@@ -1165,18 +1165,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c465c422c0c504ba5f0447fcd825cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLife: 200
+  maxLife: 150
   imageLifeFill: {fileID: 868411898547285030}
-  damage: 6
+  damage: 10
   level: 3
   fireRate: 1
+  selfDamage: 10
   prefabProjectile: {fileID: 4612058029918503865, guid: 3150554e1d3581249a4b4f664b3a3748, type: 3}
   bulletOrigin: {fileID: 868411898089950459}
   targets: []
   towers: []
   buttonUpgrade: {fileID: 1173224641}
   txtLevel: {fileID: 1175808367}
-  coastUpgrade: 60
+  coastUpgrade: 55
   animator: {fileID: 0}
   levelUPEffect: {fileID: 4330838582166473700}
   pacocaObjects:
@@ -1198,7 +1199,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07, y: 0.8}
+  m_Offset: {x: 0, y: 0.8}
   m_Size: {x: 0.64705867, y: 1.7617645}
   m_Direction: 0
 --- !u!50 &868411898812547975

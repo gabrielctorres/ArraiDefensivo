@@ -34,7 +34,7 @@ public class TowerEsptin : Tower
             nextFire = Time.time + fireRate;
             StartCoroutine(RotateToTarget(nearestEnemy));
             AttackNearestEnemy(nearestEnemy);
-            TakeDamage(damage / 2);
+            TakeDamage(selfDamage);
         }
     }
 
